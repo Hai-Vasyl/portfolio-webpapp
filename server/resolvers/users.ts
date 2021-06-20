@@ -13,11 +13,15 @@ import path from "path"
 import { getColor } from "../helpers/color"
 
 config({ path: path.resolve(__dirname, "../", "../", ".env") })
-const { JWT_SECRET } = process.env
+const { JWT_SECRET }: any = process.env
 
 const Query = {
-  sayHello() {
-    return "Hello World!"
+  getUser(_: any, { userId }: any) {
+    try {
+      return User.findById(userId).select("-password")
+    } catch (error) {
+      throw new Error(`Getting user data error: ${error.message}`)
+    }
   },
 }
 

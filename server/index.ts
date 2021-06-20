@@ -5,10 +5,10 @@ import mongoose from "mongoose"
 import { config } from "dotenv"
 import typeDefs from "./typeDefs"
 import resolvers from "./resolvers"
-// import isAuth from "./context/isAuth"
+import isAuth from "./context/isAuth"
 import cors from "cors"
 
-config({ path: path.resolve(__dirname, "../", "../", ".env") })
+config({ path: path.resolve(__dirname, "../", ".env") })
 const { PORT, MONGO_USER, MONGO_PASS, MONGO_DB, NODE_ENV } = process.env
 const isDev = NODE_ENV === "development"
 
@@ -35,7 +35,7 @@ const isDev = NODE_ENV === "development"
       context: ({ req, res }: { req: any; res: any }) => ({
         req,
         res,
-        // isAuth: isAuth(req),
+        isAuth: () => isAuth(req),
       }),
     })
     server.applyMiddleware({ app })

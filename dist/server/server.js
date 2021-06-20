@@ -2,6 +2,67 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./server/context/isAuth.ts":
+/*!**********************************!*\
+  !*** ./server/context/isAuth.ts ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jsonwebtoken */ "jsonwebtoken");
+/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jsonwebtoken__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var dotenv__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! dotenv */ "dotenv");
+/* harmony import */ var dotenv__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(dotenv__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! path */ "path");
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+(0,dotenv__WEBPACK_IMPORTED_MODULE_1__.config)({
+  path: path__WEBPACK_IMPORTED_MODULE_2___default().resolve(__dirname, "../", "../", ".env")
+});
+var JWT_SECRET = process.env.JWT_SECRET;
+
+var isAuth = function isAuth(req) {
+  var auth = req && req.headers && req.headers.authorization;
+
+  if (!auth) {
+    throw new Error("Access denied!");
+  }
+
+  var token = auth.split(" ")[1];
+
+  if (!token) {
+    throw new Error("Access denied!");
+  }
+
+  var decodedToken;
+
+  try {
+    var _jwt$verify = jsonwebtoken__WEBPACK_IMPORTED_MODULE_0___default().verify(token, JWT_SECRET),
+        userId = _jwt$verify.userId;
+
+    decodedToken = userId;
+  } catch (error) {
+    throw new Error("Access denied!");
+  }
+
+  if (!decodedToken) {
+    throw new Error("Access denied!");
+  }
+
+  return {
+    userId: decodedToken
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (isAuth);
+
+/***/ }),
+
 /***/ "./server/helpers/color.ts":
 /*!*********************************!*\
   !*** ./server/helpers/color.ts ***!
@@ -161,12 +222,18 @@ __webpack_require__.r(__webpack_exports__);
 });
 var JWT_SECRET = process.env.JWT_SECRET;
 var Query = {
-  sayHello: function sayHello() {
-    return "Hello World!";
+  getUser: function getUser(_, _ref) {
+    var userId = _ref.userId;
+
+    try {
+      return _models__WEBPACK_IMPORTED_MODULE_3__.User.findById(userId).select("-password");
+    } catch (error) {
+      throw new Error("Getting user data error: ".concat(error.message));
+    }
   }
 };
 var Mutation = {
-  loginUser: function loginUser(_, _ref) {
+  loginUser: function loginUser(_, _ref2) {
     return _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
       var _email, password, _checkIsEmpty, email, user, token;
 
@@ -174,7 +241,7 @@ var Mutation = {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _email = _ref.email, password = _ref.password;
+              _email = _ref2.email, password = _ref2.password;
               _context.prev = 1;
               _checkIsEmpty = (0,_validation_main__WEBPACK_IMPORTED_MODULE_2__.checkIsEmpty)({
                 email: _email,
@@ -218,7 +285,7 @@ var Mutation = {
       }, _callee, null, [[1, 12]]);
     }))();
   },
-  registerUser: function registerUser(_, _ref2) {
+  registerUser: function registerUser(_, _ref3) {
     return _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2() {
       var _firstname, _lastname, _email, password, role, _checkIsEmpty2, firstname, lastname, email, hashedPass, user, newUser, token;
 
@@ -226,7 +293,7 @@ var Mutation = {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              _firstname = _ref2.firstname, _lastname = _ref2.lastname, _email = _ref2.email, password = _ref2.password, role = _ref2.role;
+              _firstname = _ref3.firstname, _lastname = _ref3.lastname, _email = _ref3.email, password = _ref3.password, role = _ref3.role;
               _context2.prev = 1;
               _checkIsEmpty2 = (0,_validation_main__WEBPACK_IMPORTED_MODULE_2__.checkIsEmpty)({
                 firstname: _firstname,
@@ -314,7 +381,7 @@ __webpack_require__.r(__webpack_exports__);
 var _templateObject;
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,apollo_server_express__WEBPACK_IMPORTED_MODULE_1__.gql)(_templateObject || (_templateObject = _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0___default()(["\n  type Auth {\n    userId: String\n    token: String\n  }\n  type Query {\n    sayHello: String!\n  }\n  type Mutation {\n    loginUser(email: String!, password: String!): Auth!\n    registerUser(\n      firstname: String!\n      lastname: String!\n      email: String!\n      password: String!\n      role: String\n    ): Auth!\n  }\n"]))));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,apollo_server_express__WEBPACK_IMPORTED_MODULE_1__.gql)(_templateObject || (_templateObject = _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0___default()(["\n  type User {\n    email: String!\n    ava: String\n    color: String!\n    firstname: String!\n    lastname: String!\n    role: String!\n    date: String!\n  }\n  type Auth {\n    userId: String\n    token: String\n  }\n  type Query {\n    getUser(userId: String!): User!\n  }\n  type Mutation {\n    loginUser(email: String!, password: String!): Auth!\n    registerUser(\n      firstname: String!\n      lastname: String!\n      email: String!\n      password: String!\n      role: String\n    ): Auth!\n  }\n"]))));
 
 /***/ }),
 
@@ -786,8 +853,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var dotenv__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(dotenv__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _typeDefs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./typeDefs */ "./server/typeDefs.ts");
 /* harmony import */ var _resolvers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./resolvers */ "./server/resolvers/index.ts");
-/* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! cors */ "cors");
-/* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(cors__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _context_isAuth__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./context/isAuth */ "./server/context/isAuth.ts");
+/* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! cors */ "cors");
+/* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(cors__WEBPACK_IMPORTED_MODULE_10__);
 
 
 
@@ -796,11 +864,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import isAuth from "./context/isAuth"
+
 
 
 (0,dotenv__WEBPACK_IMPORTED_MODULE_6__.config)({
-  path: path__WEBPACK_IMPORTED_MODULE_4___default().resolve(__dirname, "../", "../", ".env")
+  path: path__WEBPACK_IMPORTED_MODULE_4___default().resolve(__dirname, "../", ".env")
 });
 var _process$env = process.env,
     PORT = _process$env.PORT,
@@ -818,7 +886,7 @@ _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( 
         case 0:
           _context.prev = 0;
           app = express__WEBPACK_IMPORTED_MODULE_2___default()();
-          app.use(cors__WEBPACK_IMPORTED_MODULE_9___default()());
+          app.use(cors__WEBPACK_IMPORTED_MODULE_10___default()());
           _context.next = 5;
           return mongoose__WEBPACK_IMPORTED_MODULE_5___default().connect("mongodb+srv://".concat(MONGO_USER, ":").concat(MONGO_PASS, "@cluster0.osxef.mongodb.net/").concat(MONGO_DB, "?retryWrites=true&w=majority"), {
             useCreateIndex: true,
@@ -839,8 +907,10 @@ _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( 
                   res = _ref2.res;
               return {
                 req: req,
-                res: res // isAuth: isAuth(req),
-
+                res: res,
+                isAuth: function isAuth() {
+                  return (0,_context_isAuth__WEBPACK_IMPORTED_MODULE_9__.default)(req);
+                }
               };
             }
           });

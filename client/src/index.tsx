@@ -3,7 +3,7 @@ import { render } from "react-dom"
 import App from "./components/App"
 import "./styles/index.scss"
 import { BrowserRouter as Router } from "react-router-dom"
-// import store from "./redux/store"
+import store from "./redux/store"
 import { Provider } from "react-redux"
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client"
 import { setContext } from "@apollo/client/link/context"
@@ -39,11 +39,11 @@ const client = new ApolloClient({
 
 render(
   <ApolloProvider client={client}>
-    {/* <Provider store={store}> */}
-    <Router>
-      <App />
-    </Router>
-    {/* </Provider> */}
+    <Provider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </Provider>
   </ApolloProvider>,
   document.getElementById("root")
 )
