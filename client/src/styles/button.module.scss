@@ -1,0 +1,55 @@
+@import "main";
+
+.btn {
+  @extend %flex-center;
+  font-weight: bold;
+  background-color: transparent;
+  border: 2px solid transparent;
+  padding: 7px;
+  gap: 7px;
+  color: black;
+  border-radius: getRadius(main);
+  transition: getTransition(main);
+  &__icon {
+    font-size: 1.05em;
+  }
+  &__title {
+  }
+  &:hover {
+    border-color: getColor(night-dark);
+  }
+  &:active {
+    opacity: 0.5;
+  }
+  &___primary {
+    background-color: getColor(night);
+    border-color: getColor(night-dark);
+    color: white;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    &:hover {
+      box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
+    }
+    &:active {
+      background-color: getColor(night-dark);
+    }
+  }
+  &___secondary {
+    border-color: getColor(night-dark);
+    &:hover {
+      background-color: getColor(night);
+      color: white;
+    }
+    &:active {
+      background-color: getColor(night-dark);
+    }
+  }
+  &___rounded {
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    padding: 0;
+    & > * {
+      margin: auto;
+    }
+  }
+}

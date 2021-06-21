@@ -1,0 +1,14 @@
+@import "main";
+
+.ava {
+  @extend %position-extend;
+  @extend %image;
+  display: flex;
+  border: 2px solid getColor(main-dark);
+  &__letters {
+    margin: auto;
+  }
+  &___active {
+    border-color: getColor(minor);
+  }
+}

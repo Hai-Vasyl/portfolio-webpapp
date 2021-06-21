@@ -1,0 +1,55 @@
+$colors: (
+  main: rgb(245, 245, 245),
+  main-light: white,
+  main-dark: rgb(209, 212, 223),
+  accent: #2b58e1,
+  minor: #e93d85,
+  night: rgb(69, 69, 69),
+  night-light: rgb(98, 98, 98),
+  night-dark: rgb(54, 54, 54),
+);
+$transitions: (
+  main: 0.2s ease,
+);
+$radiuses: (
+  main: 5px,
+);
+
+@function getColor($color) {
+  @return map-get($colors, $color);
+}
+@function getTransition($transition) {
+  @return map-get($transitions, $transition);
+}
+@function getRadius($radius) {
+  @return map-get($radiuses, $radius);
+}
+
+%position-extend {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+%position-extend-fixed {
+  @extend %position-extend;
+  position: fixed;
+}
+%position-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+%flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+%image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  display: block;
+}

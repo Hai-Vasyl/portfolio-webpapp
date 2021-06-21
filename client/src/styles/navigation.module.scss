@@ -1,0 +1,76 @@
+@import "main";
+
+.nav {
+  @extend %position-extend-fixed;
+  right: auto;
+  border-right: 1px solid getColor(main-dark);
+  width: 70px;
+  &__menu {
+    @extend %flex-center;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100vh;
+    padding: 20px 0;
+  }
+  &__logo {
+    width: 55px;
+    height: 55px;
+    & > img {
+      @extend %image;
+    }
+  }
+  &__links {
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+    margin: 0 auto;
+  }
+}
+
+.navlink {
+  @extend %flex-center;
+  color: black;
+  font-size: 1.25em;
+  padding: 11px 20px;
+  transition: getTransition(main);
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  background-color: getColor(main);
+  &__icon {
+    font-size: 1.2em;
+  }
+  &__title {
+    opacity: 0;
+    max-width: 0;
+    transition: getTransition(main);
+    overflow: hidden;
+    font-size: 0.9em;
+  }
+  &:hover {
+    gap: 10px;
+    .navlink__title {
+      max-width: 85px;
+      opacity: 1;
+    }
+  }
+  &___active {
+    border-left-color: getColor(accent);
+  }
+}
+
+.dropdown {
+  &__avatar {
+  }
+  &__menu {
+  }
+  &__info {
+  }
+  &__username {
+  }
+  &__email {
+  }
+  &__link {
+  }
+}

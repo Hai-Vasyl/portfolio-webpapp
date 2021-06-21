@@ -1,5 +1,57 @@
+@import "main";
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  font-family: "Cabin", sans-serif;
+  background-color: getColor(main);
+}
+
+button,
+input,
+select,
+option {
+  border: none;
+  font-size: inherit;
+  font-family: inherit;
+  outline: none;
+}
+
+button,
+select {
+  cursor: pointer;
+  background-color: transparent;
+}
+
+a {
+  text-decoration: none;
+  color: getColor(accent);
+  font-style: italic;
+}
+a:hover {
+  transition: getTransition(main);
+  color: getColor(accent);
+}
+
+@keyframes fade-in {
+  from {
+    transform: translateY(100px);
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
+
+.page {
+  &__wrapper {
+    width: calc(100vw - 70px);
+    background-color: red;
+    margin-left: auto;
+    min-height: 100vh;
+    animation: fade-in 1s ease;
+  }
 }

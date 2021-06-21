@@ -17,10 +17,21 @@ const mainRoutes = [
   { path: "/projects/:projectid", component: Project },
 ]
 
+const userRoutes = [...mainRoutes]
+
 const adminRouts = [
   ...mainRoutes,
   { path: "/create", component: ModProject },
   { path: "/edit/:projectid", component: ModProject },
 ]
 
-export const getRoutes = () => {}
+export const getRoutes = (role: string) => {
+  switch (role) {
+    case "admin":
+      return adminRouts
+    case "user":
+      return userRoutes
+    default:
+      return mainRoutes
+  }
+}

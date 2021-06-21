@@ -381,7 +381,7 @@ __webpack_require__.r(__webpack_exports__);
 var _templateObject;
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,apollo_server_express__WEBPACK_IMPORTED_MODULE_1__.gql)(_templateObject || (_templateObject = _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0___default()(["\n  type User {\n    email: String!\n    ava: String\n    color: String!\n    firstname: String!\n    lastname: String!\n    role: String!\n    date: String!\n  }\n  type Auth {\n    userId: String\n    token: String\n  }\n  type Query {\n    getUser(userId: String!): User!\n  }\n  type Mutation {\n    loginUser(email: String!, password: String!): Auth!\n    registerUser(\n      firstname: String!\n      lastname: String!\n      email: String!\n      password: String!\n      role: String\n    ): Auth!\n  }\n"]))));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,apollo_server_express__WEBPACK_IMPORTED_MODULE_1__.gql)(_templateObject || (_templateObject = _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0___default()(["\n  type User {\n    _id: String!\n    email: String!\n    ava: String\n    color: String!\n    firstname: String!\n    lastname: String!\n    role: String!\n    date: String!\n  }\n  type Auth {\n    userId: String\n    token: String\n  }\n  type Query {\n    getUser(userId: String!): User!\n  }\n  type Mutation {\n    loginUser(email: String!, password: String!): Auth!\n    registerUser(\n      firstname: String!\n      lastname: String!\n      email: String!\n      password: String!\n      role: String\n    ): Auth!\n  }\n"]))));
 
 /***/ }),
 
