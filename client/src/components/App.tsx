@@ -8,6 +8,7 @@ import { getRoutes } from "../datasets/routes"
 import { GET_USER_DATA } from "../resolvers/queries"
 import { useQuery } from "@apollo/client"
 import Loader from "./Loader"
+import FormAuth from "./FormAuth"
 
 const App = () => {
   const { auth } = useSelector((state: RootStore) => state)
@@ -35,7 +36,8 @@ const App = () => {
   return (
     <div className='page'>
       <Navigation />
-      <Loader load={initLoad} />
+      <FormAuth />
+      <Loader load={initLoad} extended={true} />
       {!initLoad && (!auth.userId || (auth.userId && !loadUser)) && (
         <div className='page__wrapper'>
           <Switch>

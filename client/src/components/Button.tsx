@@ -23,8 +23,8 @@ const Button: React.FC<IButtonProps> = ({
       type={isBtn ? "button" : "submit"}
       onClick={click ? click : () => {}}
     >
-      <Icon className={s.btn__icon} />
-      <span className={s.btn__title}>{title}</span>
+      {Icon && <Icon className={s.btn__icon} />}
+      {title && <span className={s.btn__title}>{title}</span>}
     </button>
   )
 }

@@ -5,7 +5,7 @@ const initState: IAuth = {
   token: "",
 }
 
-const authReducer = (state = initState, action: actionDefinitions) => {
+const authReducer = (state = initState, action: actionDefinitions): IAuth => {
   switch (action.type) {
     case SET_AUTH:
       return {

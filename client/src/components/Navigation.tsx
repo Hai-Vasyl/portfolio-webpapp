@@ -11,8 +11,9 @@ import Avatar from "./Avatar"
 import { useQuery } from "@apollo/client"
 import { GET_USER_DATA } from "../resolvers/queries"
 import Button from "./Button"
-import { BiLogIn } from "react-icons/bi"
+import { AiOutlineLogin } from "react-icons/ai"
 import NavLink from "./NavLink"
+import { btn } from "../datasets"
 
 const Navigation: React.FC = () => {
   const { auth } = useSelector((state: RootStore) => state)
@@ -72,7 +73,11 @@ const Navigation: React.FC = () => {
         {auth.userId ? (
           dropdown
         ) : (
-          <Button Icon={BiLogIn} click={handlePopupAuthform} />
+          <Button
+            Icon={AiOutlineLogin}
+            exClass={`${btn.second} ${btn.round}`}
+            click={handlePopupAuthform}
+          />
         )}
       </div>
     </div>

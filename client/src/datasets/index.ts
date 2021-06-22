@@ -1,5 +1,8 @@
+// @ts-ignore
+import s from "../styles/button.module"
+
 export const btn = {
-  prime: "btn___primary",
-  second: "btn___secondary",
-  round: "btn___rounded",
+  prime: s.btn___primary,
+  second: s.btn___secondary,
+  round: s.btn___rounded,
 }

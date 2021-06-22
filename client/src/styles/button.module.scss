@@ -4,37 +4,38 @@
   @extend %flex-center;
   font-weight: bold;
   background-color: transparent;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   padding: 7px;
   gap: 7px;
   color: black;
   border-radius: getRadius(main);
   transition: getTransition(main);
+  font-size: 1.1em;
   &__icon {
     font-size: 1.05em;
   }
   &__title {
   }
   &:hover {
-    border-color: getColor(night-dark);
+    border-color: getColor(main-dark);
   }
   &:active {
     opacity: 0.5;
   }
   &___primary {
     background-color: getColor(night);
-    border-color: getColor(night-dark);
+    border-color: getColor(main-dark);
     color: white;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 5px;
     &:hover {
-      box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
     &:active {
       background-color: getColor(night-dark);
     }
   }
   &___secondary {
-    border-color: getColor(night-dark);
+    border-color: getColor(main-dark);
     &:hover {
       background-color: getColor(night);
       color: white;

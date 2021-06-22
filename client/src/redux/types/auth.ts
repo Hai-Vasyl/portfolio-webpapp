@@ -5,9 +5,9 @@ export interface IAuth {
   userId: string
 }
 
-interface setAuth {
+interface SetAuth {
   type: typeof SET_AUTH
   payload: IAuth
 }
 
-export type actionDefinitions = setAuth
+export type actionDefinitions = SetAuth

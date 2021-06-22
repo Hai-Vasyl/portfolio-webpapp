@@ -1,0 +1,9 @@
+@import "main";
+
+.projects {
+  &__btn_create {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+  }
+}
