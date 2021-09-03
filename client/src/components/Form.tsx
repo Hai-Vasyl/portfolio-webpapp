@@ -72,7 +72,7 @@ const Form: React.FC<IFormProps> = ({
       <form onSubmit={handleSubmitForm}>
         <Loader load={loading} />
         <div>{fields}</div>
-        <div>{btns}</div>
+        <div>{btns()}</div>
       </form>
     </div>
   )

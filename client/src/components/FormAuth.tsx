@@ -1,6 +1,8 @@
 import React from "react"
 import Form from "./Form"
 import Button from "./Button"
+// @ts-ignore
+import s from "../styles/form.module"
 
 const FormAuth: React.FC = () => {
   const configForm = [
@@ -13,7 +15,7 @@ const FormAuth: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className={s.form_auth}>
       <Form
         config={configForm}
         title='Auth form'
@@ -21,7 +23,7 @@ const FormAuth: React.FC = () => {
         submit={onSubmit}
         btns={() => (
           <>
-            <span>Something</span>
+            <button>Something</button>
             {/* <Button/> */}
           </>
         )}

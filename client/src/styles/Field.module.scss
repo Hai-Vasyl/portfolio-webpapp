@@ -1,0 +1,24 @@
+@import "main";
+
+.field {
+  display: block;
+  &___required {
+  }
+  &__label {
+    padding: 3px 0;
+    display: inline-block;
+  }
+  &__input {
+    width: 100%;
+    display: block;
+    padding: 7px;
+    border: 2px solid getColor(main-dark);
+    background-color: transparent;
+    transition: getTransition(main);
+    &:focus {
+      border-color: getColor(accent);
+    }
+  }
+  &__msg {
+  }
+}
